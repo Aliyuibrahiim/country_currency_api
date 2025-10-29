@@ -328,12 +328,17 @@ app.get('/countries/image', async (req, res) => {
     }
 });
 
-// Health check
 app.get('/', (req, res) => {
     res.json({ 
         message: 'Country Currency API is running!',
         status: 'OK',
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        environment: {
+            DB_HOST: process.env.DB_HOST ? '✅ Set' : '❌ Missing',
+            DB_USER: process.env.DB_USER ? '✅ Set' : '❌ Missing', 
+            DB_NAME: process.env.DB_NAME ? '✅ Set' : '❌ Missing',
+            DB_PASSWORD: process.env.DB_PASSWORD ? '✅ Set' : '❌ Missing'
+        }
     });
 });
 
