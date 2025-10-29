@@ -334,10 +334,10 @@ app.get('/', (req, res) => {
         status: 'OK',
         timestamp: new Date().toISOString(),
         environment: {
-            DB_HOST: process.env.DB_HOST ? '✅ Set' : '❌ Missing',
-            DB_USER: process.env.DB_USER ? '✅ Set' : '❌ Missing', 
-            DB_NAME: process.env.DB_NAME ? '✅ Set' : '❌ Missing',
-            DB_PASSWORD: process.env.DB_PASSWORD ? '✅ Set' : '❌ Missing'
+            DB_HOST: process.env.DB_HOST ? 'Set' : 'Missing',
+            DB_USER: process.env.DB_USER ? 'Set' : 'Missing', 
+            DB_NAME: process.env.DB_NAME ? 'Set' : 'Missing',
+            DB_PASSWORD: process.env.DB_PASSWORD ? 'Set' : ' Missing'
         }
     });
 });
