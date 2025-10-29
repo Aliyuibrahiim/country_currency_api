@@ -19,7 +19,6 @@ const dbConfig = {
     connectTimeout: 60000,
     timeout: 60000,
     reconnect: true,
-    // Add connection pool settings
     connectionLimit: 10,
     waitForConnections: true,
     queueLimit: 0
@@ -33,10 +32,10 @@ let lastRefreshTime = null;
 async function getConnection() {
     try {
         const connection = await pool.getConnection();
-        console.log('✅ Got database connection');
+        console.log('Got database connection');
         return connection;
     } catch (error) {
-        console.error('❌ Failed to get database connection:', error);
+        console.error('Failed to get database connection:', error);
         throw error;
     }
 }
@@ -46,11 +45,11 @@ async function testConnection() {
     try {
         const connection = await getConnection();
         const [rows] = await connection.execute('SELECT 1 as test');
-        console.log('✅ Database connection test successful');
+        console.log('Database connection test successful');
         connection.release(); // Always release connection back to pool
         return true;
     } catch (error) {
-        console.error('❌ Database connection test failed:', error);
+        console.error('Database connection test failed:', error);
         return false;
     }
 }
@@ -281,17 +280,17 @@ app.get('/', (req, res) => {
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
     console.log('Testing database connection...');
     
     const connected = await testConnection();
     if (connected) {
-        console.log('✅ Database connection established');
+        console.log('Database connection established');
     } else {
-        console.log('❌ Database connection failed - some features may not work');
+        console.log('Database connection failed - some features may not work');
     }
-    
-    console.log('✅ API Ready!');
+
+    console.log('API Ready!');
 });
 
 // Handle graceful shutdown
